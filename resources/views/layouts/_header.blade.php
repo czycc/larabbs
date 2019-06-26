@@ -20,8 +20,30 @@
             <!-- right side of navbar-->
             <ul class="nav navbar-nav navbar-right">
                 <!-- authentication links-->
-                <li><a href="#">登陆</a></li>
-                <li><a href="#">注册</a> </li>
+                @guest()
+                    <li><a href="{{ route('login') }}">登陆</a></li>
+                    <li><a href="{{ route('register') }}">注册</a></li>
+                @else
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <span class="user-avatar pull-left" style="margin-right:8px;margin-top: -5px;">
+                            <img src="https://iocaffcdn.phphub.org/uploads/images/201709/20/1/PtDKbASVcz.png?imageView2/1/w/60/h/60"
+                                 alt="" class="img-responsive img-circle" width="30px" height="30px">
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();document.getElementById('logout-form').submit();">退出登陆</a>
+                                <form action="{{ route('logout') }}" id="logout-form" method="post"
+                                      style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @endguest
             </ul>
         </div>
     </div>
