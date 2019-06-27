@@ -16,10 +16,10 @@
                         <div class="media-body">
                             <hr>
                             <h4><strong>个人简介</strong></h4>
-                            <p>jssjsijijia  gsdw gsdaw</p>
+                            <p>{{ $user->introduction }}</p>
                             <hr>
                             <h4><strong>注册于</strong></h4>
-                            <p>January 01 1999</p>
+                            <p>{{ $user->created_at->diffForHumans() }}</p>
                         </div>
                     </div>
                 </div>
