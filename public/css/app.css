@@ -8336,7 +8336,7 @@ button.close {
 /* universal */
 
 body {
-  font-family: Hiragino Sans GB, "Hiragino Sans GB", Helvetica, "Microsoft YaHei", Arial,sans-serif;
+  font-family: Hiragino Sans GB, "Hiragino Sans GB", Helvetica, "Microsoft YaHei", Arial, sans-serif;
 }
 
 /* header */
@@ -8392,5 +8392,11 @@ body {
   margin-bottom: 0px;
   margin-top: 10px;
   cursor: pointer;
+}
+
+/* 用户信息页面 */
+
+.users-show-page .user-info .thumbnail {
+  margin-bottom: 0px;
 }
 
