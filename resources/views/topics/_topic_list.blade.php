@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="media-body meta">
-                        <a href="#" title="{{ $topic->category->name }}">
+                        <a href="{{ route('categories.show', $topic->category->id) }}" title="{{ $topic->category->name }}">
                             <span class="glyphicon glyphicon-folder-open" aria-hidden="true">
                                 {{ $topic->category->name }}
                             </span>
@@ -36,8 +36,8 @@
             @if(! $loop->last)
                 <hr>
             @endif
-            @endforeach
+        @endforeach
     </ul>
-    @else
+@else
     <div class="empty-block">暂无数据</div>
 @endif
