@@ -14,6 +14,14 @@
         $(document).ready(function () {
             let editor = new Simditor({
                 textarea: $('#editor'),
+                upload: {
+                    url: '{{ route('topics.upload_image') }}',
+                    params: { _token : '{{ csrf_token() }}'},
+                    fileKey: 'upload_file',
+                    connectionCount: 3,
+                    leaveConfirm: '文件上传中。。。'
+                },
+                pasteImage: true
             })
         })
     </script>

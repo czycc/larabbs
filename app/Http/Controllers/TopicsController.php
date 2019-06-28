@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Handlers\ImageUploadHandler;
 use App\Models\Category;
 use App\Models\Topic;
 use Illuminate\Http\Request;
@@ -60,5 +61,24 @@ class TopicsController extends Controller
 		$topic->delete();
 
 		return redirect()->route('topics.index')->with('message', 'Deleted successfully.');
+	}
+
+    public function uploadImage(ImageUploadHandler $uploader, Request $request)
+    {
+        $data = [
+            'success' => false,
+            'msg' => 'fail',
+            'file_path' => ''
+        ];
+
+        if ($file = $request->upload_file) {
+            $result  = $uploader->save($request->upload_file, 'topics', \Auth::id(), 1024);
+            if ($result) {
+                $data['success'] = true;
+                $data['msg'] = 'success!!';
+                $data['file_path'] = $result['path'];
+            }
+        }
+        return $data;
 	}
 }
