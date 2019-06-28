@@ -1,5 +1,23 @@
 @extends('layouts.app')
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/simditor.css') }}">
+@endsection
+
+@section('scripts')
+    <script type="text/javascript"  src="{{ asset('js/module.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/hotkeys.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/uploader.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/simditor.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            let editor = new Simditor({
+                textarea: $('#editor'),
+            })
+        })
+    </script>
+@endsection
 @section('content')
     <div class="container">
         <div class="col-md-10 col-md-offset-1">
@@ -40,7 +58,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <textarea name="body" id="editor" rows="3" class="form-control" placeholder="请至少输入三个字符" required>
+                                        <textarea name="body" id="editor" rows="3" class="form-control"
+                                                  placeholder="请至少输入三个字符" required>
                                             {{ old('body', $topic->body) }}
                                         </textarea>
                                     </div>
