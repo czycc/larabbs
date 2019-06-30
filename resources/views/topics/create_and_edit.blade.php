@@ -5,26 +5,26 @@
 @endsection
 
 @section('scripts')
-    {{--<script type="text/javascript"  src="{{ asset('js/module.js') }}"></script>--}}
-    {{--<script type="text/javascript"  src="{{ asset('js/hotkeys.js') }}"></script>--}}
-    {{--<script type="text/javascript"  src="{{ asset('js/uploader.js') }}"></script>--}}
-    {{--<script type="text/javascript"  src="{{ asset('js/simditor.js') }}"></script>--}}
+    <script type="text/javascript" src="{{ asset('js/module.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/hotkeys.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/uploader.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/simditor.js') }}"></script>
 
-    {{--<script>--}}
-        {{--$(document).ready(function () {--}}
-            {{--let editor = new Simditor({--}}
-                {{--textarea: $('#editor'),--}}
-                {{--upload: {--}}
-                    {{--url: '{{ route('topics.upload_image') }}',--}}
-                    {{--params: { _token : '{{ csrf_token() }}'},--}}
-                    {{--fileKey: 'upload_file',--}}
-                    {{--connectionCount: 3,--}}
-                    {{--leaveConfirm: '文件上传中。。。'--}}
-                {{--},--}}
-                {{--pasteImage: true--}}
-            {{--})--}}
-        {{--})--}}
-    {{--</script>--}}
+    <script>
+        $(document).ready(function () {
+            let editor = new Simditor({
+                textarea: $('#editor'),
+                upload: {
+                    url: '{{ route('topics.upload_image') }}',
+                    params: {_token: '{{ csrf_token() }}'},
+                    fileKey: 'upload_file',
+                    connectionCount: 3,
+                    leaveConfirm: '文件上传中。。。'
+                },
+                pasteImage: true
+            })
+        })
+    </script>
 @endsection
 @section('content')
     <div class="container">
@@ -58,9 +58,10 @@
 
                                     <div class="form-group">
                                         <select name="category_id" class="form-control" required>
-                                            <option value="" hidden disabled selected>请选择分类</option>
+                                            <option value="" hidden disabled {{ $topic->id ? '' : 'selected' }}>请选择分类
+                                            </option>
                                             @foreach($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                <option value="{{ $category->id }}" {{ $category->id == $topic->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
